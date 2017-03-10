@@ -3,8 +3,8 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-app.post('/', (req, res) => {
-  console.log('Post received!');
+app.post('/motion', (req, res) => {
+  console.log('motion detected');
   res.sendStatus(201);
 });
 

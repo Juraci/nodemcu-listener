@@ -18,7 +18,6 @@ let count = 0;
 let connections = [];
 
 app.post('/motion', urlencoded, (req, res) => {
-  count++;
   const timeHappened = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY, h:mm:ss a');
   const message = `Motion ${timeHappened}`;
 

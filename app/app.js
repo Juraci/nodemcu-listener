@@ -33,6 +33,8 @@ app.get('/stream', (req, res) => {
   sensorEmiter.on('movement', (id, message) => {
     res.sseSend(id, message);
   });
+
+ res.sseSend(0, 'sse ready');
 });
 
 module.exports = app;

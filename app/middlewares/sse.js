@@ -7,7 +7,8 @@ module.exports = (req, res, next) => {
     });
   };
 
-  res.sseSend = (data) => {
+  res.sseSend = (id, data) => {
+    res.write(`id: ${id}\n`);
     res.write(`data: ${data}\n\n`);
   };
 

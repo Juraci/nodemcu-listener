@@ -6,6 +6,9 @@ const moment = require('moment-timezone');
 const sse = require('./middlewares/sse');
 const app = express();
 
+const EventEmitter = require('events');
+const sensorEmiter = new EventEmitter;
+
 const urlencoded = bodyParser.urlencoded({ extended: true });
 
 app.use(cors());
@@ -19,17 +22,17 @@ app.post('/motion', urlencoded, (req, res) => {
   const timeHappened = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY, h:mm:ss a');
   const message = `Motion ${timeHappened}`;
 
-  connections.forEach((c) => {
-    c.sseSend(count, message);
-  });
+  sensorEmiter.emit('movement', count, message);
+
   res.sendStatus(201);
 });
 
 app.get('/stream', (req, res) => {
   res.sseSetup();
-  res.sseSend(0, 'sse ready');
-  connections.push(res);
-  console.log(`amount of connections ${connections.length}`);
+
+  sensorEmiter.on('movement', (id, message) => {
+    res.sseSend(id, message);
+  });
 });
 
 module.exports = app;

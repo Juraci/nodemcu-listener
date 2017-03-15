@@ -19,7 +19,6 @@ app.post('/motion', urlencoded, (req, res) => {
   const timeHappened = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY, h:mm:ss a');
   const message = `Motion ${timeHappened}`;
 
-  console.log(`amount of connections ${connections.length}`);
   connections.forEach((c) => {
     c.sseSend(count, message);
   });
@@ -30,6 +29,7 @@ app.get('/stream', (req, res) => {
   res.sseSetup();
   res.sseSend(0, 'sse ready');
   connections.push(res);
+  console.log(`amount of connections ${connections.length}`);
 });
 
 module.exports = app;

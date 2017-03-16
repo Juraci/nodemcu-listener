@@ -21,6 +21,7 @@ app.post('/motion', urlencoded, (req, res) => {
   const timeHappened = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY, h:mm:ss a');
   const message = `Motion ${timeHappened}`;
 
+  count++;
   sensorEmiter.emit('movement', count, message);
 
   res.sendStatus(201);

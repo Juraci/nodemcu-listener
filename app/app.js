@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const moment = require('moment-timezone');
-
 const sse = require('./middlewares/sse');
+const auth = require('./middlewares/auth');
+
 const app = express();
 
 const EventEmitter = require('events');
@@ -17,7 +18,7 @@ app.use(sse);
 let count = 0;
 let connections = [];
 
-app.post('/motion', urlencoded, (req, res) => {
+app.post('/motion', urlencoded, auth, (req, res) => {
   const timeHappened = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY, h:mm:ss a');
   const message = `Motion ${timeHappened}`;
 

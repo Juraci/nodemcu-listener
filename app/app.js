@@ -1,4 +1,5 @@
 const express = require('express');
+const EventEmitter = require('events');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const moment = require('moment-timezone');
@@ -6,10 +7,7 @@ const sse = require('./middlewares/sse');
 const auth = require('./middlewares/auth');
 
 const app = express();
-
-const EventEmitter = require('events');
 const sensorEmiter = new EventEmitter;
-
 const urlencoded = bodyParser.urlencoded({ extended: true });
 
 app.use(cors());

@@ -1,10 +1,10 @@
-const express = require('express');
-const EventEmitter = require('events');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const moment = require('moment-timezone');
-const sse = require('./middlewares/sse');
-const auth = require('./middlewares/auth');
+import express from 'express';
+import EventEmitter from 'events';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import moment from 'moment-timezone';
+import sse from './middlewares/sse';
+import auth from './middlewares/auth';
 
 const app = express();
 const sensorEmiter = new EventEmitter;
@@ -36,4 +36,4 @@ app.get('/stream', (req, res) => {
  res.sseSend(0, 'sse ready');
 });
 
-module.exports = app;
+export default app;

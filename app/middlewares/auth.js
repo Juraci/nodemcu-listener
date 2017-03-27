@@ -1,6 +1,6 @@
-const config = require('../../config/environment');
+import config from '../../config/environment';
 
-module.exports = (req, res, next) => {
+export default (req, res, next) => {
   const credentials = req.headers.authorization;
 
   if(!credentials) {

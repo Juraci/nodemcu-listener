@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+export default (req, res, next) => {
   res.sseSetup = () => {
     res.writeHead(200, {
       'Content-Type': 'text/event-stream',

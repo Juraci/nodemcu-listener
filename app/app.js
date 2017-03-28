@@ -28,7 +28,7 @@ const appMaker = (enabledCards) => {
     const timeHappened = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY, h:mm:ss a');
     const message = `Motion ${timeHappened}`;
 
-    count =+ 1;
+    count += 1;
     sensorEmiter.emit(`motion-${cardId}`, count, message);
 
     res.sendStatus(204);

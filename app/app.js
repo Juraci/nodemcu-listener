@@ -25,6 +25,7 @@ const appMaker = (enabledCards) => {
   app.post('/cards/:id/motion', auth, (req, res) => {
     const cardId = req.params.id;
     isEnabled(cardId, enabledCards, res);
+
     const timeHappened = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY, h:mm:ss a');
     const message = `Motion ${timeHappened}`;
 

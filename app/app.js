@@ -13,27 +13,39 @@ const urlencoded = bodyParser.urlencoded({ extended: true });
 app.use(cors());
 app.use(sse);
 
-let count = 0;
-let connections = [];
+const isEnabled = (cardId, enabledCards, res) => {
+  if (!cardId || !enabledCards.includes(cardId)) {
+    return res.sendStatus(404);
+  }
+};
 
-app.post('/motion', urlencoded, auth, (req, res) => {
-  const timeHappened = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY, h:mm:ss a');
-  const message = `Motion ${timeHappened}`;
+const appMaker = (enabledCards) => {
+  let count = 0;
+  let connections = [];
 
-  count++;
-  sensorEmiter.emit('movement', count, message);
+  app.post('/cards/:id/motion', auth, (req, res) => {
+    const cardId = req.params.id;
+    isEnabled(cardId, enabledCards, res);
+    const timeHappened = moment().tz('America/Sao_Paulo').format('DD/MM/YYYY, h:mm:ss a');
+    const message = `Motion ${timeHappened}`;
 
-  res.sendStatus(201);
-});
+    count =+ 1;
+    sensorEmiter.emit(`motion-${cardId}`, count, message);
 
-app.get('/stream', (req, res) => {
-  res.sseSetup();
-
-  sensorEmiter.on('movement', (id, message) => {
-    res.sseSend(id, message);
+    res.sendStatus(204);
   });
 
- res.sseSend(0, 'sse ready');
-});
+  app.get('/cards/:id/stream', (req, res) => {
+    const cardId = req.params.id;
+    isEnabled(req.params.id, enabledCards, res);
+    res.sseSetup();
 
-export default app;
+    sensorEmiter.on(`motion-${cardId}`, (id, message) => res.sseSend(id, message));
+
+    res.sseSend(0, 'sse ready');
+  });
+
+  return app;
+};
+
+export default appMaker;

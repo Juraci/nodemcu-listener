@@ -1,6 +1,7 @@
 const port = process.env.PORT || 3000;
-const app = require('./build/app').default;
+const appMaker = require('./build/app').default;
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
+const cardIds = process.env.ALLOWED_CARDS.split(',');
+const app = appMaker(cardIds);
+
+app.listen(port, () =>  console.log(`Listening on port ${port}`));

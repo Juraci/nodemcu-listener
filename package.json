@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run build && node index.js",
     "build": "rm -rf ./build && babel app -d build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test npm run acceptance",
+    "acceptance": "mocha --opts spec/acceptance/mocha.opts spec/acceptance/*.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +18,12 @@
     "cors": "^2.8.1",
     "express": "^4.15.2",
     "moment-timezone": "^0.5.11"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eventsource": "^0.2.2",
+    "mocha": "^3.2.0",
+    "superagent": "^3.5.2",
+    "supertest": "^3.0.0"
   }
 }

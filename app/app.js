@@ -21,7 +21,6 @@ const isEnabled = (cardId, enabledCards, res) => {
 
 const appMaker = (enabledCards) => {
   let count = 0;
-  let connections = [];
 
   app.post('/cards/:id/motion', auth, (req, res) => {
     const cardId = req.params.id;

@@ -40,9 +40,13 @@ const appMaker = (enabledCards) => {
     isEnabled(req.params.id, enabledCards, res);
     res.sseSetup();
 
-    sensorEmiter.on(`motion-${cardId}`, (id, message) => res.sseSend(id, message));
+    sensorEmiter.on(`motion-${cardId}`, res.sseSend);
 
     res.sseSend(0, 'sse ready');
+    res.on('close', () => {
+      console.log('number of listeners: ', sensorEmiter.listeners(`motion-${cardId}`).length);
+      sensorEmiter.removeListener(`motion-${cardId}`, res.sseSend);
+    });
   });
 
   return app;

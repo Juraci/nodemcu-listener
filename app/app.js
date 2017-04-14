@@ -44,7 +44,9 @@ const appMaker = (enabledCards) => {
 
     res.sseSend(0, 'sse ready');
 
-    const intervalId = setInterval(res.sseSend(0, 'sse ready'), 50000);
+    const intervalId = setInterval(() => {
+      res.sseSend(0, 'sse ready');
+    }, 50000);
 
     res.on('close', () => {
       console.log('number of listeners: ', sensorEmiter.listeners(`motion-${cardId}`).length);

@@ -6,19 +6,19 @@ let sseRefreshTime;
 if (environment === 'development') {
   user = 'test@example';
   password = 'mypassword';
-  sseRefreshTime = 30;
+  sseRefreshTime = 30000;
 }
 
 if (environment === 'test') {
   user = 'test@example';
   password = 'mypassword';
-  sseRefreshTime = 30;
+  sseRefreshTime = 30000;
 }
 
 if (environment === 'production') {
   user = process.env.USER;
   password = process.env.PASSWORD;
-  sseRefreshTime = process.env.SSE_REFRESH_TIME || 30;
+  sseRefreshTime = process.env.SSE_REFRESH_TIME || 30000;
 }
 
 module.exports = {

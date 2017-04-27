@@ -18,12 +18,13 @@ if (environment === 'test') {
 if (environment === 'production') {
   user = process.env.USER;
   password = process.env.PASSWORD;
-  sseRefreshTime = 30000;
+  sseRefreshTime = parseInt(process.env.SSE_REFRESH_TIME, 10) || 30000;
 }
 
 module.exports = {
   ENV: {
     user,
     password,
+    sseRefreshTime,
   }
 };

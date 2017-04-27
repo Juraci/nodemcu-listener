@@ -5,7 +5,6 @@ import cors from 'cors';
 import moment from 'moment-timezone';
 import sse from './middlewares/sse';
 import auth from './middlewares/auth';
-import config from '../config/environment';
 
 const app = express();
 const sensorEmiter = new EventEmitter;
@@ -47,7 +46,7 @@ const appMaker = (enabledCards) => {
 
     const intervalId = setInterval(() => {
       res.sseSend(0, 'sse ready');
-    }, config.sseRefreshTime);
+    }, 30000);
 
     res.on('close', () => {
       console.log('number of listeners: ', sensorEmiter.listeners(`motion-${cardId}`).length);

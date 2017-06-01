@@ -1,0 +1,19 @@
+version: '2'
+services:
+  web:
+    build:
+      context: .
+    environment:
+      NODE_ENV: development
+      ALLOWED_CARDS: 1,2
+      PORT: 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/app/nodemcu-listener
+      - /home/app/nodemcu-listener/node_modules
+  tests:
+    build:
+      context: .
+    tty: true
+    command: npm test

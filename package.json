@@ -20,7 +20,7 @@
     "moment-timezone": "^0.5.11"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
+    "chai": "^4.0.2",
     "eventsource": "^1.0.0",
     "mocha": "^3.4.0",
     "superagent": "^3.5.2"

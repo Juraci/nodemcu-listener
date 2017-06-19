@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "chai": "^4.0.2",
-    "eventsource": "^1.0.0",
+    "eventsource": "^1.0.3",
     "mocha": "^3.4.0",
     "superagent": "^3.5.2"
   },

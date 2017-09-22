@@ -14,7 +14,7 @@
   "dependencies": {
     "babel-cli": "^6.24.0",
     "babel-preset-node6": "^11.0.0",
-    "body-parser": "^1.17.1",
+    "body-parser": "^1.18.2",
     "cors": "^2.8.1",
     "express": "^4.15.2",
     "moment-timezone": "^0.5.11"

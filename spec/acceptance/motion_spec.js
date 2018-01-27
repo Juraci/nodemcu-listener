@@ -25,6 +25,7 @@ describe('POST cards/:id/motion', () => {
         return;
       }
       expect(e.data).to.match(/Motion \d+\/\d+\/\d+, \d+\:\d+\:\d+ (am|pm)/);
+      source.close();
       done();
     });
 

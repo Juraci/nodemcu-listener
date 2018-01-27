@@ -18,7 +18,7 @@ describe('POST cards/:id/motion', () => {
 
   afterEach(() => server.close());
 
-  it('emits a server sent event on cards/:id/stream endpoint', (done) => {
+  it('emits a server sent event on cards/:id/stream endpoint', done => {
     const source = new EventSource(`${url}/cards/${cardId}/stream`);
     source.on('message', (e) => {
       if(e.data === 'sse ready') {
@@ -38,7 +38,7 @@ describe('POST cards/:id/motion', () => {
   });
 
   context('when the board id does not exist', () => {
-    it('returns 404', (done) => {
+    it('returns 404', done => {
       request
         .post(`${url}/cards/does-not-exit/motion`)
         .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -50,8 +50,8 @@ describe('POST cards/:id/motion', () => {
     });
   });
 
-  context('when there is not authorization', () => {
-    it('returns 404', (done) => {
+  context('when there is no authorization', () => {
+    it('returns 404', done => {
       request
         .post(`${url}/cards/${cardId}/motion`)
         .set('Content-Type', 'application/x-www-form-urlencoded')

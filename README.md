@@ -1,6 +1,6 @@
 # nodemcu-listener
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Juraci/nodemcu-listener.svg)](https://greenkeeper.io/)[![Build Status](https://travis-ci.org/Juraci/nodemcu-listener.svg?branch=master)](https://travis-ci.org/Juraci/nodemcu-listener)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Juraci/nodemcu-listener.svg)](https://greenkeeper.io/) [![Build Status](https://travis-ci.org/Juraci/nodemcu-listener.svg?branch=master)](https://travis-ci.org/Juraci/nodemcu-listener)
 
 ## Goal
 
